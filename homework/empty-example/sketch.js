@@ -1,3 +1,5 @@
+var faceColor = "white";
+
 function setup() {
   // put setup code here
 
@@ -16,7 +18,7 @@ function draw() {
 
   var white = 255;
   var black = 0;
-  fill(white);
+  fill(faceColor);
   stroke(black);
 
 //body
@@ -48,5 +50,20 @@ ellipse(rightEyeX,eyeY,20,20);
 //mouth
 ellipse(250,300,50,20);
 
+
+}
+
+function mousePressed() {
+  faceColor = "pink";
+}
+
+function mouseReleased() {
+  faceColor = "white";
+}
+
+function keyPressed() {
+  if (key == "a") {
+    background(200,200,40);
+  }
 
 }
