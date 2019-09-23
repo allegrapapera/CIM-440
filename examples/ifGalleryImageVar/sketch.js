@@ -2,8 +2,8 @@
 // Puppy image "puppies" by www.petian.net is licensed under CC BY-NC-ND 2.0  https://search.creativecommons.org/photos/4f271583-e45d-4faf-bfc8-7291c7c1e3c3
 // dinosaur "Rupenhorn Dinosaur #4" by Kristian_Laban is licensed under CC BY-NC 2.0 https://search.creativecommons.org/photos/96213ba5-e9b6-4f2f-91e4-da28b9fcad22
 
-var puppy, dinosaur, sloth;
-var pButton, dButton, sButton;
+var cat, dinosaur, sloth;
+var cButton, dButton, sButton;
 
 var currentImage = 0;
 
@@ -13,7 +13,7 @@ var currentAnimal;
 
 function preload(){
   // load media
-  puppy = loadImage("images/puppy.jpg");
+  cat = loadImage("images/cat photo.jpg");
   dinosaur = loadImage("images/dinosaur.jpg");
   sloth = loadImage("images/sloth.jpg");
 }
@@ -22,8 +22,8 @@ function setup() {
   // put setup code here
   createCanvas(400,400);
 
-  pButton = createButton("Puppy");
-  pButton.mousePressed(function(){
+  cButton = createButton("Puppy");
+  cButton.mousePressed(function(){
     currentImage = 0;
   });
 
@@ -37,7 +37,7 @@ function setup() {
     currentImage = 2;
   });
 
-  currentAnimal = puppy;
+  currentAnimal = cat;
 }
 
 function draw() {
