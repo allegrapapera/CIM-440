@@ -12,10 +12,6 @@ var currentImage = 0;
 
 var imageArray = [];
 
-var hitX = [100,200];
-var hitY = [300,300];
-var hitSize = 50;
-
 function preload(){
   // load media
   imageArray[0] = loadImage("images/cat photo.jpg");
@@ -67,29 +63,6 @@ function draw() {
   console.log("currentImage " + currentImage);
   image(imageArray[currentImage],0,0,imageArray[currentImage].width/4,imageArray[currentImage].height/4);
 
-  rect(hitX[0],hitY[0],hitSize,hitSize);
-  rect(hitX[1],hitY[1],hitSize,hitSize);
 
-}
 
-function mousePressed(){
-  if (mouseX > hitX[0] && mouseX < hitX[0]+hitSize && mouseY > hitY[0] && mouseY < hitY[0]+hitSize){
-    console.log("Button 0");
-    if (currentImage < imageArray.length-1) {
-      currentImage += 1;
-    }
-    if (currentImage == imageArray.length-1) {
-      currentImage = 0;
-    }
-  }
-
-  if (mouseX > hitX[1] && mouseX < hitX[1]+hitSize && mouseY > hitY[1] && mouseY < hitY[1]+hitSize){
-    console.log("Button 1");
-    if (currentImage > 0) {
-      currentImage -= 1;
-    }
-    if (currentImage == 0) {
-      currentImage = imageArray.length-1;
-    }
-  }
 }
