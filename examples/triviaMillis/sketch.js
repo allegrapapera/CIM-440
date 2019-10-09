@@ -1,10 +1,14 @@
-var questions = ["Iceland is always covered in ice.", "What ocean lies east of the US?", "whats glennons zodiac sign"];
-var options = ["1) True 2) False", "1) Pacific 2) Eastern 3) Indian 4) Atlantic", "1) Virgo 2) Libra 3) Sagittarius 4) bread"];
-var answers = [2, 4, 2];
+var questions = ["Is iceland always covered in ice?", "What ocean lies east of the US?"];
+var options = ["1) True 2) False", "1) Pacific 2) Eastern 3) Indian 4) Atlantic"];
+var answers = [2, 4];
 
 var buttons = [];
 
 var answerText = "";
+
+var startTimer = false;
+var interval = 5000;
+var prevMillis = 0;
 
 var currentOption = -1;
 var currentQuestion = 0;
@@ -43,28 +47,32 @@ background(255);
 text(questions[currentQuestion],20,100);
 text(options[currentQuestion],20,200);
 
-text(answerText,70,400);
+if (startTimer == true) {
+  text(answerText,70,400);
+  if (millis()-prevMillis > interval) {
+    prevMillis = millis();
+    startTimer = false;
+    console.log("Timer ended");
+  }
+}
 
   if (currentOption != -1) {
     if (currentOption+1 == answers[currentQuestion]) {
       console.log("correct");
       answerText = "correct";
-      //set currentOption to an inactive state so comparison isn't happening when we don't want it
-      currentOption = -1;
       currentQuestion += 1;
 
       if (currentQuestion == questions.length) {
         currentQuestion = 0;
       }
     }
-    else if (currentQuestion == 2 && currentOption == 3) {
-      answerText = "bread";
-    }
     else {
       console.log("incorrect");
       answerText = "incorrect";
-      //set currentOption to an inactive state so comparison isn't happening when we don't want it
-      currentOption = -1;
     }
+    //set currentOption to an inactive state so comparison isn't happening when we don't want it
+    currentOption = -1;
+    startTimer = true;
+    prevMillis = millis();
   }
 }
