@@ -40,6 +40,17 @@ function setup() {
     currentImage = 0;
   });
 
+  backButton = createButton("Return to Map");
+  backButton.position(200, 700);
+  backButton.mousePressed(function(){
+    currentImage = 0;
+    //Having trouble removing the backButton because of draw() looping; Not sure how to remove
+    backButton.hide();
+  });
+
+  backButton.hide();
+
+
 }
 
 function mousePressed() {
@@ -88,12 +99,6 @@ function draw() {
 //creating button to go back to map page
   if (currentImage == 1 || currentImage == 2) {
     text("Click your mouse to start or stop playing the music!",width/2-100,50);
-    backButton = createButton("Return to Map");
-    backButton.position(200, 700);
-    backButton.mousePressed(function(){
-      currentImage = 0;
-      //Having trouble removing the backButton because of draw() looping; Not sure how to remove
-      backButton.remove();
-    });
+ backButton.show();
   }
 }

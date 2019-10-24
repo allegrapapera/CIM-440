@@ -1,4 +1,4 @@
-Title: Allegra's Corner
+# Allegra's Corner
 
 The intention of this project is to make hand-made artwork accessible and interactive on a digital platform.
 I made each collage (the town, the circus tent's interior, and the diner's interior) by hand, then I scanned them into the computer.
