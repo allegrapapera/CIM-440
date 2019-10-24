@@ -93,12 +93,13 @@ function draw() {
     text("Click on either the circus tent or the diner to go inside.", width/2, 50);
     dinerSong.stop();
     circusSong.stop();
+    backButton.hide();
   }
 //creating input for ghosts
 
 //creating button to go back to map page
   if (currentImage == 1 || currentImage == 2) {
     text("Click your mouse to start or stop playing the music!",width/2-100,50);
- backButton.show();
+    backButton.show();
   }
 }
