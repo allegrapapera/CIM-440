@@ -77,7 +77,7 @@ function draw() {
   fill("white");
   playButton.display();
   // put drawing code here
-  background("#7FFFD4");
+  background("black");
   rect(400, 150, 600, 500, 20);
 
   //set location for titlePoster
