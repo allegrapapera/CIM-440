@@ -1,4 +1,4 @@
-#Interactive Movie: Battle of the Pizza Shop Goths
+# Interactive Movie: Battle of the Pizza Shop Goths
 
 This project is an interactive video project. The videos paired with the button features allow for the user to choose their preferred progression through the story.
 I filmed these clips, and my friends acted in them.
