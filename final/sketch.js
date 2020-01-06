@@ -134,7 +134,7 @@ function mousePressed() {
     videoArray[currentVideoIndex].play();
 
     console.log("currentVideoIndex: " + currentVideoIndex);
-
+    playButton.overlay == false;
   }
 
   if (stopButton.overlay == true) {
