@@ -1,4 +1,4 @@
-var currentVideoIndex = -1;
+var currentVideoIndex = 0;
 var playButton;
 var stopButton;
 var pauseButton;
@@ -7,9 +7,6 @@ var girlsFightButton;
 var guysFightButton;
 var danceButton;
 var fightButton;
-var restartButton;
-
-var playing = false;
 
 var buttonTimeArray = [];
 var videoArray = [];
@@ -39,7 +36,7 @@ function setup() {
   videoArray[6].hide();
 
   // put setup code here
-  var cnv = createCanvas(1400,800);
+  var cnv = createCanvas(2000,800);
 
   cnv.id("myCanvas");
 
@@ -56,8 +53,8 @@ function setup() {
   //To center our container, you need to set a width and margin: 0 auto;
   cnv.parent("#container0");
 
-  playButton = new hitZoneObject(675,600,30,"white",loadImage("items/play.png"));
   stopButton = new hitZoneObject(500,600,30,"white",loadImage("items/stop.png"));
+  playButton = new hitZoneObject(675,600,30,"white",loadImage("items/play.png"));
   pauseButton = new hitZoneObject(825,600,30,"white",loadImage("items/pause-button.png"));
 
   girlsFightButton = new hitZoneObject(500,700,50,"white,",loadImage("items/girlsBattle.png"));
@@ -69,6 +66,7 @@ function setup() {
   restartButton = new hitZoneObject(675,700,50,"white,",loadImage("items/fight.png"));
   //stopButton.hide();
   //pauseButton.hide();
+
 
 }
 
@@ -86,9 +84,8 @@ function draw() {
 
   playButton.display();
   playButton.check();
-  //stopButton.display();
-  //pauseButton.display();
-  if (playing && currentVideoIndex>-1) {
+
+  if (videoArray[currentVideoIndex].time() > 0 && currentVideoIndex>-1) {
     stopButton.display();
     stopButton.check();
     pauseButton.display();
@@ -116,108 +113,124 @@ function draw() {
     fightButton.check();
   }
 
-  if (videoArray[6].time()>37 || videoArray[5].time()>18 || videoArray[4].time()>46 || videoArray[3].time()>30) {
-
+  if (stopButton.overlay == true) {
+    console.log("stopButton OVERLAY!!!");
   }
 
+  if (playButton.overlay == true) {
+    console.log("playButton OVERLAY!!!");
+  }
 }
 
 function mousePressed() {
-  if (stopButton.overlay == true) {
-    console.log("stopButton");
-    videoArray[currentVideoIndex].stop();
-    videoArray[currentVideoIndex].hide();
-    currentVideoIndex = -1;
-  }
+
   if (playButton.overlay == true) {
-    if (currentVideoIndex==-1) {
-      currentVideoIndex=0;
-    }
-    //console.log(playButton.label);
-    //soundFile.stop();
-    //soundFile.play();
-    //cowVid.style("display", "inline-blocK"); //puts html elements next to each other
-    videoArray[currentVideoIndex].position(428,100);
+  console.log("playButton");
+
+
+    videoArray[currentVideoIndex].position(420, 100);
     videoArray[currentVideoIndex].size(550,450);
     videoArray[currentVideoIndex].show();
     videoArray[currentVideoIndex].play();
-    playing = true;
+
+    console.log("currentVideoIndex: " + currentVideoIndex);
+
   }
+
+  if (stopButton.overlay == true) {
+    console.log("stopButton ON");
+    videoArray[currentVideoIndex].stop();
+    videoArray[currentVideoIndex].hide();
+    currentVideoIndex = 0;
+
+    console.log("currentVideoIndex: " + currentVideoIndex);
+    stopButton.overlay = false;
+  }
+
   if (pauseButton.overlay == true) {
+    console.log("pauseButton");
     videoArray[currentVideoIndex].pause();
+    paused = true;
+
   }
+
   if (guysFightButton.overlay == true && currentVideoIndex == 0) {
     videoArray[currentVideoIndex].stop();
     videoArray[currentVideoIndex].hide();
     currentVideoIndex = 1;
-    videoArray[currentVideoIndex].position(428,100);
+    videoArray[currentVideoIndex].position(420, 100);
     videoArray[currentVideoIndex].size(550,450);
     videoArray[currentVideoIndex].show();
     videoArray[currentVideoIndex].play();
-    playing = true;
+    guysFightButton.overlay = false;
   }
+
   if (girlsFightButton.overlay == true && currentVideoIndex == 0) {
     videoArray[currentVideoIndex].stop();
     videoArray[currentVideoIndex].hide();
     currentVideoIndex = 2;
-    videoArray[currentVideoIndex].position(428,100);
+    videoArray[currentVideoIndex].position(420, 100);
     videoArray[currentVideoIndex].size(550,450);
     videoArray[currentVideoIndex].show();
     videoArray[currentVideoIndex].play();
-    playing = true;
-  }
+    girlsFightButton.overlay = false;
+    }
+
   //guys dance off
   if (danceButton.overlay == true && currentVideoIndex == 1) {
     videoArray[currentVideoIndex].stop();
     videoArray[currentVideoIndex].hide();
     currentVideoIndex = 4;
-    videoArray[currentVideoIndex].position(428,100);
+    videoArray[currentVideoIndex].position(420, 100);
     videoArray[currentVideoIndex].size(550,450);
     videoArray[currentVideoIndex].show();
     videoArray[2].volume(0);
     videoArray[3].volume(0);
+    console.log("WANNA PLAYYY")
     videoArray[currentVideoIndex].play();
-    playing = true;
+    danceButton.overlay = false;
   }
+
   //girls dance off
   if (danceButton.overlay == true && currentVideoIndex == 2) {
     videoArray[currentVideoIndex].stop();
     videoArray[currentVideoIndex].hide();
     currentVideoIndex = 6;
-    videoArray[currentVideoIndex].position(428,100);
+    videoArray[currentVideoIndex].position(420, 100);
     videoArray[currentVideoIndex].size(550,450);
     videoArray[currentVideoIndex].show();
     videoArray[2].volume(0);
     videoArray[3].volume(0);
     videoArray[currentVideoIndex].play();
-    playing = true;
+    danceButton.overlay = false;
   }
+
   //girls fight
   if (fightButton.overlay == true && currentVideoIndex == 2) {
     videoArray[currentVideoIndex].stop();
     videoArray[currentVideoIndex].hide();
     currentVideoIndex = 5;
-    videoArray[currentVideoIndex].position(428,100);
+    videoArray[currentVideoIndex].position(420, 100);
     videoArray[currentVideoIndex].size(550,450);
     videoArray[currentVideoIndex].show();
     videoArray[2].volume(0);
     videoArray[3].volume(0);
     videoArray[currentVideoIndex].play();
-    playing = true;
+    fightButton.overlay = false;
   }
+
   //guys fight
   if (fightButton.overlay == true && currentVideoIndex == 1) {
     videoArray[currentVideoIndex].stop();
     videoArray[currentVideoIndex].hide();
     currentVideoIndex = 3;
-    videoArray[currentVideoIndex].position(428,100);
+    videoArray[currentVideoIndex].position(420, 100);
     videoArray[currentVideoIndex].size(550,450);
     videoArray[currentVideoIndex].show();
     videoArray[2].volume(0);
     videoArray[currentVideoIndex].play();
-    playing = true;
+    fightButton.overlay = false;
   }
-
 
 
 }
@@ -246,7 +259,7 @@ class hitZoneObject {
   }
 
   check() {
-    if(mouseX > this.x && mouseX < (this.x+this.boxSize)&&mouseY > this.y && mouseY < (this.y + this.boxSize)) {
+    if((mouseX > this.x) && (mouseX < (this.x+this.boxSize)) && (mouseY > this.y) && (mouseY < (this.y + this.boxSize))) {
       //console.log("over button " + this.boxColor);
       this.overlay = true;
     } else {
